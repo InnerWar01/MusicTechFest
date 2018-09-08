@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dotenv": "^5.0.1",
+    "macaddress": "^0.2.9",
     "query-string": "^6.0.0",
     "react": "^16.2.0",
     "react-debounce-input": "^3.2.0",
@@ -12,7 +13,8 @@
     "react-flexbox-grid": "^2.0.0",
     "react-music": "^1.0.3",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "url-parse": "^1.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
