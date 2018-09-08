@@ -1,5 +1,8 @@
 import React from 'react';
 import Sequencer from '../components/sequencer';
+import Geolocation from '../components/geolocation';
+import AudioPlayer from 'react-cl-audio-player';
+import { modelInstance } from '../model/model';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -7,6 +10,7 @@ class HomeContainer extends React.Component {
         this.state = {
             squares: Array(16).fill(null),
             squaresClicked: Array(16).fill(false),
+            sounds: modelInstance.getSounds(),
         };
     }
 
@@ -18,17 +22,21 @@ class HomeContainer extends React.Component {
         this.setState({
             squaresClicked: newSquaresClicked,
         }); //set the new state
-        
+
         console.log("Square " + i + " pressed.");
     }
 
     render() {
         return (
-            <Sequencer             
-                squares={this.state.squares}
-                squaresClicked={this.state.squaresClicked}
-                onClick={i => this.handleClick(i)}
-            />
+            <div className="home-container">
+                <Geolocation/>
+                <AudioPlayer songs={this.state.sounds} autoplay/>
+                <Sequencer             
+                    squares={this.state.squares}
+                    squaresClicked={this.state.squaresClicked}
+                    onClick={i => this.handleClick(i)}
+                />
+            </div>
         );
     }
 }
