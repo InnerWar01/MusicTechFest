@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+}
+
+.btn-default {
+    color: #333;
+    border-color: rgba(208, 60, 100, 1);
+    background-color: #faece9;
+}
+
+.btn-default:hover {
+    background-color: rgba(242, 210, 210, 1);
+    color: rgba(208, 60, 100, 1);
+}
+
+*:hover {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+@media screen and (max-width: 667px) {
+    .btn-default {
+        width: 100%;
+        margin-bottom: 5%;
+        height: 40px;
+    }
+}
