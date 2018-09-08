@@ -2,6 +2,7 @@ import React from 'react';
 import Sequencer from '../components/sequencer';
 import Geolocation from '../components/geolocation';
 import AudioPlayer from 'react-cl-audio-player';
+import {Row, Col} from 'react-flexbox-grid';
 import { modelInstance } from '../model/model';
 
 class HomeContainer extends React.Component {
@@ -29,13 +30,21 @@ class HomeContainer extends React.Component {
     render() {
         return (
             <div className="home-container">
-                <Geolocation/>
-                <AudioPlayer songs={this.state.sounds} autoplay/>
-                <Sequencer             
-                    squares={this.state.squares}
-                    squaresClicked={this.state.squaresClicked}
-                    onClick={i => this.handleClick(i)}
-                />
+                <Row>
+                    <Col xs={12} sm={2} md={2}>
+                        <Geolocation/>
+                    </Col>
+                    <Col xs={12} sm={6} md={6}>
+                        <AudioPlayer songs={this.state.sounds} autoplay className="audio-player"/>
+                    </Col>
+                    <Col xs={12} sm={4} md={4}>
+                        <Sequencer             
+                            squares={this.state.squares}
+                            squaresClicked={this.state.squaresClicked}
+                            onClick={i => this.handleClick(i)}
+                        />
+                    </Col>
+                </Row>
             </div>
         );
     }
