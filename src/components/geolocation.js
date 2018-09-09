@@ -43,10 +43,10 @@ class Geolocation extends React.Component {
             : <div>Getting the location data&hellip; </div>;
     }
   }
-   
+
   export default geolocated({
     positionOptions: {
-      enableHighAccuracy: false,
+      enableHighAccuracy: true,
     },
     userDecisionTimeout: 5000,
   })(Geolocation);
