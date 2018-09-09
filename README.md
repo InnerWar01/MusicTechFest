@@ -1,4 +1,5 @@
 # Rhythm Me Up
+Test the app on https://rhythm-me-up.herokuapp.com/
 
 ## How to get started
 

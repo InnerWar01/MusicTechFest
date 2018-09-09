@@ -5,6 +5,7 @@
   "dependencies": {
     "dotenv": "^5.0.1",
     "macaddress": "^0.2.9",
+    "note-parser": "^2.0.1",
     "query-string": "^6.0.0",
     "react": "^16.2.0",
     "react-cl-audio-player": "^2.2.0",

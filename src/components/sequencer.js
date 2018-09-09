@@ -5,7 +5,6 @@ class Sequencer extends React.Component {
     renderSquare(i) {
       return (
         <Square
-          value={this.props.squares[i]}
           squareClicked={this.props.squaresClicked[i]}
           onClick={() => this.props.onClick(i)}
         />
