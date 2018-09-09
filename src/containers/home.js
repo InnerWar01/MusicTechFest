@@ -3,6 +3,7 @@ import Sequencer from '../components/sequencer';
 import Geolocation from '../components/geolocation';
 import AudioPlayer from 'react-cl-audio-player';
 import {Row, Col} from 'react-flexbox-grid';
+import Test from '../components/test';
 import { modelInstance } from '../model/model';
 
 class HomeContainer extends React.Component {
@@ -45,6 +46,9 @@ class HomeContainer extends React.Component {
                         />
                     </Col>
                 </Row>
+                <div>
+                    <Test/>
+                </div>
             </div>
         );
     }
