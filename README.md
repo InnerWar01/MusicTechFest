@@ -1,4 +1,4 @@
-# Musicly
+# Rhythm Me Up
 
 ## How to get started
 
