@@ -63,9 +63,11 @@ class HomeContainer extends React.Component {
                             <Col xs={6} sm={6} md={6}><h4>Choose the sound: </h4></Col>
                             <Col xs={6} sm={6} md={6}><Dropdown activeSound={this.state.activeSound} handleSoundChange={this.handleSoundChange.bind(this)}/></Col>
                         </Row>
+                    </Col>
+                    <Col xs={12} sm={12} md={4}>
                         <AudioPlayer songs={this.state.sounds} autoplay id="audio-player"/>
                     </Col>
-                    <Col xs={12} sm={12} md={8}>
+                    <Col xs={12} sm={12} md={4}>
                         <Sequencer             
                             squaresClicked={this.state.squaresClicked}
                             onClick={i => this.handleClick(i)}
