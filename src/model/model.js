@@ -1,6 +1,16 @@
 const Model = function () {
     let sounds = [
         {
+            id: 0,
+            url: require('../sounds/silence.wav'),
+            cover: require('../media/cover.jpg'),
+            artist: {
+              name: 'Anonymous',
+              song: 'No song'
+            },
+        },
+        {
+          id: 1,
           url: require('../sounds/CLAVE.WAV'),
           cover: require('../media/cover.jpg'),
           artist: {
@@ -9,6 +19,7 @@ const Model = function () {
           },
         },
         {
+          id: 2,
           url: require('../sounds/HHCL.WAV'),
           cover: require('../media/cover.jpg'),
           artist: {
@@ -17,6 +28,7 @@ const Model = function () {
           },
         },
         {
+            id: 3,
             url: require('../sounds/KICK2.WAV'),
             cover: require('../media/cover.jpg'),
             artist: {
@@ -25,6 +37,7 @@ const Model = function () {
             },
         },
         {
+            id: 4,
             url: require('../sounds/PERC6.WAV'),
             cover: require('../media/cover.jpg'),
             artist: {
@@ -33,6 +46,7 @@ const Model = function () {
             }
         },
         {
+            id: 5,
             url: require('../sounds/SNARE1.WAV'),
             cover: require('../media/cover.jpg'),
             artist: {
@@ -42,8 +56,30 @@ const Model = function () {
         },
     ];
 
+    let sequenceArr = new Array();
+
+    this.createSequence = function(rhythm, sound_id) {
+        sequenceArr = [];
+        for (var i = 0; i < rhythm.length; i++) {
+            if (rhythm[i]) {
+                sequenceArr.push(this.getSound(sound_id));
+            } else {
+                sequenceArr.push(this.getSound(0));
+            }
+        }
+
+        return sequenceArr;
+    }
+
+    this.getSound = function(sound_id){
+        return sounds.find(x => x.id === sound_id);
+    };
+
     this.getSounds = function(){
-        return sounds;
+        if (sequenceArr.length === 0)
+            return sounds;
+
+        return sequenceArr;
     };
 
     this.fetch_geolocation = function(params){

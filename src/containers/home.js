@@ -10,10 +10,11 @@ class HomeContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            squaresClicked: Array(16).fill(false),
-            sounds: modelInstance.getSounds(),
+            squaresClicked: [false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false],
             activeSound: "clave",
             soundId: "1",
+            sequence: modelInstance.createSequence([false, false, true, false, false, true, false, false, true, false, false, true, false, false, true, false], 1),
+            sounds: modelInstance.getSounds(),
         };
     }
 
@@ -71,6 +72,7 @@ class HomeContainer extends React.Component {
                         />
                     </Col>
                 </Row>
+                <div>{console.log(this.state.sequence)}</div>
             </div>
         );
     }
