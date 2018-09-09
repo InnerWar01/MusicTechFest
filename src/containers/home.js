@@ -3,7 +3,7 @@ import Sequencer from '../components/sequencer';
 import Geolocation from '../components/geolocation';
 import AudioPlayer from 'react-cl-audio-player';
 import {Row, Col} from 'react-flexbox-grid';
-import Test from '../components/test';
+import Dropdown from '../components/dropdown';
 import { modelInstance } from '../model/model';
 
 class HomeContainer extends React.Component {
@@ -13,6 +13,8 @@ class HomeContainer extends React.Component {
             squares: Array(16).fill(null),
             squaresClicked: Array(16).fill(false),
             sounds: modelInstance.getSounds(),
+            activeSound: "clave",
+            soundId: "1",
         };
     }
 
@@ -28,17 +30,42 @@ class HomeContainer extends React.Component {
         console.log("Square " + i + " pressed.");
     }
 
+    handleSoundChange = function(evt) {
+        var targetId = null;
+
+        if (evt.target.value === "clave") {
+            targetId = 1;
+        } else if (evt.target.value === "hhcl") {
+            targetId = 2;
+        } else if (evt.target.value === "kick") {
+            targetId = 3;
+        } else if (evt.target.value === "perc") {
+            targetId = 4;
+        } else if (evt.target.value === "snare") {
+            targetId = 5;
+        }
+
+        this.setState({
+            activeSound: evt.target.value,
+            soundId: targetId
+        });
+    }
+
     render() {
         return (
             <div className="home-container">
                 <Row>
-                    <Col xs={12} sm={2} md={2}>
+                    <Col xs={12} sm={12} md={2}>
                         <Geolocation/>
                     </Col>
-                    <Col xs={12} sm={6} md={6}>
-                        <AudioPlayer songs={this.state.sounds} autoplay className="audio-player"/>
+                    <Col xs={12} sm={12} md={6}>
+                        <Row>
+                            <Col xs={6} sm={6} md={6}><h4>Choose the sound: </h4></Col>
+                            <Col xs={6} sm={6} md={6}><Dropdown activeSound={this.state.activeSound} handleSoundChange={this.handleSoundChange.bind(this)}/></Col>
+                        </Row>
+                        <AudioPlayer songs={this.state.sounds} autoplay id="audio-player"/>
                     </Col>
-                    <Col xs={12} sm={4} md={4}>
+                    <Col xs={12} sm={12} md={4}>
                         <Sequencer             
                             squares={this.state.squares}
                             squaresClicked={this.state.squaresClicked}
@@ -46,9 +73,6 @@ class HomeContainer extends React.Component {
                         />
                     </Col>
                 </Row>
-                <div>
-                    <Test/>
-                </div>
             </div>
         );
     }

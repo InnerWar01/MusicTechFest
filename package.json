@@ -1,5 +1,5 @@
 {
-  "name": "dinnerplanner-html-react",
+  "name": "rhythm-me-up",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,12 +11,14 @@
     "react-debounce-input": "^3.2.0",
     "react-dimensions": "^1.3.1",
     "react-dom": "^16.2.0",
+    "react-dropdown": "^1.6.2",
     "react-flexbox-grid": "^2.1.2",
     "react-geolocated": "^2.4.0",
     "react-music": "^1.0.3",
     "react-music-player": "^1.0.3",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
+    "react-simple-dropdown": "^3.2.3",
     "url-parse": "^1.4.3"
   },
   "scripts": {

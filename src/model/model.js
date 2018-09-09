@@ -47,7 +47,7 @@ const Model = function () {
     };
 
     this.fetch_geolocation = function(params){
-        const url = "https://130.229.135.119:5002/sequence?location=" + params.latitude + ';' + params.longitude;
+        const url = "http://130.229.135.119:5002/sequence?location=" + params.latitude + ';' + params.longitude;
         return fetch(url)
         .then(processResponse)
         .catch(handleError)
