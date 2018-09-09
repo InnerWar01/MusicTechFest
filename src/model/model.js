@@ -59,32 +59,32 @@ const Model = function() {
 
   let sequenceArr = new Array();
 
-  let sequence_layers = [];
+  // let sequence_layers = [];
 
-  let my_sequence_layer = {
-    user_id: null,
-    rhythm: [],
-    sound_id: 0
-  };
+  // let my_sequence_layer = {
+  //   user_id: null,
+  //   rhythm: [],
+  //   sound_id: 0
+  // };
 
-  let observers = [];
+  // let observers = [];
 
-  console.log(my_sequence_layer.user_id);
+  // console.log(my_sequence_layer.user_id);
 
-  function getGeoloc() {
-    return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, {
-        maximumAge: 0,
-        timeout: 5000,
-        enableHighAccuracy: true
-      })
-    });
-  }
+  // function getGeoloc() {
+  //   return new Promise(function(resolve, reject) {
+  //     navigator.geolocation.getCurrentPosition(resolve, reject, {
+  //       maximumAge: 0,
+  //       timeout: 5000,
+  //       enableHighAccuracy: true
+  //     })
+  //   });
+  // }
 
-  let location = {
-    latitude: 10,
-    longitude: 10
-  };
+  // let location = {
+  //   latitude: 10,
+  //   longitude: 10
+  // };
 
 
   this.createSequence = function(rhythm, sound_id) {
@@ -110,51 +110,51 @@ const Model = function() {
       return sequenceArr;
   };
 
-  //This function accepts a
+  // //This function accepts a
 
-  this.idx_2_bool = function(idx_arr) {
-    var val_arr = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, ];
-    for (var i = 0; i < idx_arr.length; i++) {
-      val_arr[idx_arr[i]] = true;
-    }
-    return val_arr;
-  }
+  // this.idx_2_bool = function(idx_arr) {
+  //   var val_arr = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, ];
+  //   for (var i = 0; i < idx_arr.length; i++) {
+  //     val_arr[idx_arr[i]] = true;
+  //   }
+  //   return val_arr;
+  // }
 
-  this.bool_2_idx = function(val_arr) {
-    var idx_arr = [];
+  // this.bool_2_idx = function(val_arr) {
+  //   var idx_arr = [];
 
-    for (var i = 0; i < val_arr.length; i++) {
-      if (val_arr[i] == true) {
-        idx_arr.append(i);
-      }
-    }
+  //   for (var i = 0; i < val_arr.length; i++) {
+  //     if (val_arr[i] == true) {
+  //       idx_arr.append(i);
+  //     }
+  //   }
 
-    return idx_arr
+  //   return idx_arr
 
-  }
+  // }
 
-  this.changeTimeStep = function(idx) {
+  // this.changeTimeStep = function(idx) {
 
-    var rtm_val = this.idx_2_bool(my_sequence_layer.rhythm);
+  //   var rtm_val = this.idx_2_bool(my_sequence_layer.rhythm);
 
-    rtm_val[idx] != rtm_val[idx];
+  //   rtm_val[idx] != rtm_val[idx];
 
-    //sequence_layers[sequence_layers.length-1].rhythm=val_2_idx(rtm_val);
-    my_sequence_layer.rhythm = this.bool_2_idx(rtm_val);
+  //   //sequence_layers[sequence_layers.length-1].rhythm=val_2_idx(rtm_val);
+  //   my_sequence_layer.rhythm = this.bool_2_idx(rtm_val);
 
-    notifyObservers();
+  //   notifyObservers();
 
-    if (my_sequence_layer.user_id != null) {
-      this.sendSequence(location);
-    }
+  //   if (my_sequence_layer.user_id != null) {
+  //     this.sendSequence(location);
+  //   }
 
-  }
+  // }
 
-  this.changeSound = function(new_soundId) {
-    //sequence_layers[sequence_layers.length-1].soundId=new_soundId;
-    my_sequence_layer.sound_id = new_soundId;
-    notifyObservers();
-  }
+  // this.changeSound = function(new_soundId) {
+  //   //sequence_layers[sequence_layers.length-1].soundId=new_soundId;
+  //   my_sequence_layer.sound_id = new_soundId;
+  //   notifyObservers();
+  // }
 
   const processResponse = function(response) {
     if (response.ok) {
@@ -175,113 +175,113 @@ const Model = function() {
   }
 
 
-  this.generic_fetch = function(param) {
-    const url = "https://rmuapi-api-heroku.herokuapp.com/" + param;
-    return fetch(url)
-      .then(processResponse)
-      .catch(handleError)
+  // this.generic_fetch = function(param) {
+  //   const url = "https://rmuapi-api-heroku.herokuapp.com/" + param;
+  //   return fetch(url)
+  //     .then(processResponse)
+  //     .catch(handleError)
 
 
-  }
+  // }
 
-  this.fetch_userId = function() {
-    let userId_json = this.generic_fetch("user_id");
+  // this.fetch_userId = function() {
+  //   let userId_json = this.generic_fetch("user_id");
 
-    return userId_json.then(function(result) {
-      my_sequence_layer.user_id = result.user_id;
-      return result
-    });
-  }
-
-
-  this.fetch_sequence = function(location) {
-    let seq_json = this.generic_fetch("sequence?location=" + location.latitude + ";" + location.longitude);
-
-    return seq_json.then(function(result) {
-      return result
-    });
-
-  }
-
-  this.sendSequence = function(location) {
-    const url = "https://rmuapi-api-heroku.herokuapp.com/sequence?location=" + location;
-    var layer_json = JSON.stringify(my_sequence_layer);
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      //body: 'a=1'
-      body: layer_json
-    })
-  }
-
-  this.addObserver = function(observer) {
-    observers.push(observer);
-  };
-
-  const notifyObservers = function() {
-    observers.forEach(o => o.update());
-  };
+  //   return userId_json.then(function(result) {
+  //     my_sequence_layer.user_id = result.user_id;
+  //     return result
+  //   });
+  // }
 
 
-  // fetch_userId().then(function(result){
+  // this.fetch_sequence = function(location) {
+  //   let seq_json = this.generic_fetch("sequence?location=" + location.latitude + ";" + location.longitude);
 
-  // 	console.log(my_sequence_layer.my_user_id);
-  // 	my_sequence_layer.user_id = result.user_id;
-  // 	console.log(my_sequence_layer.my_user_id);
-  // });
-  this.fetch_userId();
+  //   return seq_json.then(function(result) {
+  //     return result
+  //   });
+
+  // }
+
+  // this.sendSequence = function(location) {
+  //   const url = "https://rmuapi-api-heroku.herokuapp.com/sequence?location=" + location;
+  //   var layer_json = JSON.stringify(my_sequence_layer);
+  //   return fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     //body: 'a=1'
+  //     body: layer_json
+  //   })
+  // }
+
+  // this.addObserver = function(observer) {
+  //   observers.push(observer);
+  // };
+
+  // const notifyObservers = function() {
+  //   observers.forEach(o => o.update());
+  // };
 
 
-  getGeoloc().then((data) => {
-    location.latitude = data.coords.latitude;
-    location.latitude = data.coords.longitude;
-  })
+  // // fetch_userId().then(function(result){
 
-  var d = new Date();
+  // // 	console.log(my_sequence_layer.my_user_id);
+  // // 	my_sequence_layer.user_id = result.user_id;
+  // // 	console.log(my_sequence_layer.my_user_id);
+  // // });
+  // this.fetch_userId();
 
-  var n = d.getTime();
 
-  var n2 = 0;
+  // getGeoloc().then((data) => {
+  //   location.latitude = data.coords.latitude;
+  //   location.latitude = data.coords.longitude;
+  // })
 
-  function F1() {
+  // var d = new Date();
 
-    setTimeout(function() {
+  // var n = d.getTime();
 
-      F1();
-      getGeoloc().then((data) => {
-        location.latitude = data.coords.latitude;
-        location.latitude = data.coords.longitude;
+  // var n2 = 0;
 
-        this.fetch_sequence(location).then(function(result) {
-          console.log(result.location)
-          console.log(result.sequence)
+  // function F1() {
 
-          sequence_layers = result.sequence;
+  //   setTimeout(function() {
 
-          var updatedSequence_layers = [];
+  //     F1();
+  //     getGeoloc().then((data) => {
+  //       location.latitude = data.coords.latitude;
+  //       location.latitude = data.coords.longitude;
 
-          for (var i = 0; i < result.sequence.length; i++) {
-            if (result.sequence[i].user_id != my_sequence_layer.user_id) {
-              updatedSequence_layers.push(result.sequence[i])
-            }
-          }
+  //       this.fetch_sequence(location).then(function(result) {
+  //         console.log(result.location)
+  //         console.log(result.sequence)
 
-          sequence_layers = updatedSequence_layers;
+  //         sequence_layers = result.sequence;
 
-          console.log("fetched sequences: " + updatedSequence_layers[0].sound_id);
-          console.log("sequence_layers:" + sequence_layers.length)
-          notifyObservers();
-        });
-      })
-      console.log(my_sequence_layer.user_id)
+  //         var updatedSequence_layers = [];
 
-    }, 2000);
-  }
+  //         for (var i = 0; i < result.sequence.length; i++) {
+  //           if (result.sequence[i].user_id != my_sequence_layer.user_id) {
+  //             updatedSequence_layers.push(result.sequence[i])
+  //           }
+  //         }
 
-  F1();
+  //         sequence_layers = updatedSequence_layers;
+
+  //         console.log("fetched sequences: " + updatedSequence_layers[0].sound_id);
+  //         console.log("sequence_layers:" + sequence_layers.length)
+  //         notifyObservers();
+  //       });
+  //     })
+  //     console.log(my_sequence_layer.user_id)
+
+  //   }, 2000);
+  // }
+
+  // F1();
 
 }
 
