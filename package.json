@@ -8,6 +8,7 @@
     "deep-extend": "^0.5.1",
     "dotenv": "^5.0.1",
     "macaddress": "^0.2.9",
+    "merge": "^1.2.1",
     "note-parser": "^2.0.1",
     "query-string": "^6.0.0",
     "randomatic": "^3.0.0",
