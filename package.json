@@ -7,6 +7,8 @@
     "cryptiles": "^4.1.2",
     "deep-extend": "^0.5.1",
     "dotenv": "^5.0.1",
+    "handlebars": "^4.0.14",
+    "js-yaml": "^3.13.0",
     "lodash": "^4.17.11",
     "macaddress": "^0.2.9",
     "merge": "^1.2.1",
