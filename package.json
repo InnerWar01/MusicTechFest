@@ -13,6 +13,7 @@
     "macaddress": "^0.2.9",
     "merge": "^1.2.1",
     "note-parser": "^2.0.1",
+    "nwmatcher": "^1.4.4",
     "query-string": "^6.0.0",
     "randomatic": "^3.0.0",
     "react": "^16.2.0",
