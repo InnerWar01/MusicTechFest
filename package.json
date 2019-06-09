@@ -15,6 +15,7 @@
     "note-parser": "^2.0.1",
     "nwmatcher": "^1.4.4",
     "query-string": "^6.0.0",
+    "querystringify": "^2.0.0",
     "randomatic": "^3.0.0",
     "react": "^16.2.0",
     "react-cl-audio-player": "^2.2.0",
