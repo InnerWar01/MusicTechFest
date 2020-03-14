@@ -18,7 +18,7 @@
     "mixin-deep": "^1.3.2",
     "note-parser": "^2.0.1",
     "nwmatcher": "^1.4.4",
-    "query-string": "^6.0.0",
+    "query-string": "^6.11.1",
     "querystringify": "^2.0.0",
     "randomatic": "^3.0.0",
     "react": "^16.2.0",
