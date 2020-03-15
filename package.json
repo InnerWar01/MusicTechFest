@@ -29,7 +29,7 @@
     "react-dom": "^16.2.1",
     "react-dropdown": "^1.6.2",
     "react-flexbox-grid": "^2.1.2",
-    "react-geolocated": "^2.4.0",
+    "react-geolocated": "^3.0.1",
     "react-music": "^1.0.3",
     "react-music-player": "^1.0.3",
     "react-router-dom": "^4.2.2",
